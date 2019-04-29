@@ -1,46 +1,78 @@
 import string 
+import re
 
 ciphertext = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 
 character_frequencies = {
-	'a':8.167,	
-	'b':1.492,	
-	'c':2.782,	
-	'd':4.253,	
-	'e':12.702,	
-	'f':2.228,	
-	'g':2.015,	
-	'h':6.094,	
-	'i':6.966,	
-	'j':0.153,	
-	'k':0.772,	
-	'l':4.025,	
-	'm':2.406,	
-	'n':6.749,	
-	'o':7.507,	
-	'p':1.929,	
-	'q':0.095,	
-	'r':5.987,	
-	's':6.327,	
-	't':9.056,	
-	'u':2.758,	
-	'v':0.978,	
-	'w':2.360,	
-	'x':0.150,	
-	'y':1.974,	
-	'z':0.074
-}
+            'a': 0.0651738, 'b': 0.0124248, 'c': 0.0217339,
+            'd': 0.0349835, 'e': 0.1041442, 'f': 0.0197881,
+            'g': 0.0158610, 'h': 0.0492888, 'i': 0.0558094,
+            'j': 0.0009033, 'k': 0.0050529, 'l': 0.0331490,
+            'm': 0.0202124, 'n': 0.0564513, 'o': 0.0596302,
+            'p': 0.0137645, 'q': 0.0008606, 'r': 0.0497563,
+            's': 0.0515760, 't': 0.0729357, 'u': 0.0225134,
+            'v': 0.0082903, 'w': 0.0171272, 'x': 0.0013692,
+            'y': 0.0145984, 'z': 0.0007836, ' ': 0.1918182}
 
-def xor_string(string, key):
-	return ''.join(chr(ord(char) ^ ord(key)) for char in string)
+def xor_string(string_to_xor, key):
+	return ''.join(chr(ord(char) ^ ord(key)) for char in string_to_xor)
 
 def chi_square_value(char, n_obs, str_len):
-	return (n_obs + str_len * character_frequencies[char])**2/float(str_len * character_frequencies[char])
+	return (n_obs - str_len * (character_frequencies[char]))**2/float(str_len * character_frequencies[char])
 
 
 def scoring(string_to_score):
 	result = 0.0
 	chars_tested = []
+
+	if " " not in string_to_score:
+		return 0.0
+
+	if "#" in string_to_score:
+		return 0.0
+
+	if "{" in string_to_score:
+		return 0.0
+
+	if "}" in string_to_score:
+		return 0.0
+
+	if "%" in string_to_score:
+		return 0.0
+
+	if ";" in string_to_score:
+		return 0.0
+
+	if "$" in string_to_score:
+		return 0.0
+
+	if "]" in string_to_score:
+		return 0.0
+
+	if "[" in string_to_score:
+		return 0.0
+
+	if ":" in string_to_score:
+		return 0.0
+
+	if "_" in string_to_score:
+		return 0.0
+
+	if "\\" in string_to_score:
+		return 0.0
+
+	if "@" in string_to_score:
+		return 0.0
+
+	if "/" in string_to_score:
+		return 0.0
+
+	if "~" in string_to_score:
+		return 0.0
+
+	# printset = set(string.printable)
+	# if not set(string_to_score).issubset(printset):
+	# 	return 0.0
 
 	for char in string_to_score:
 		lower_char = char.lower()
@@ -51,6 +83,62 @@ def scoring(string_to_score):
 
 	return result
 
+def simple_scoring(string_to_score):
+	result = 0.0
+
+	if " " not in string_to_score:
+		return 0.0
+
+	if "#" in string_to_score:
+		return 0.0
+
+	if "{" in string_to_score:
+		return 0.0
+
+	if "}" in string_to_score:
+		return 0.0
+
+	if "%" in string_to_score:
+		return 0.0
+
+	if ";" in string_to_score:
+		return 0.0
+
+	if "$" in string_to_score:
+		return 0.0
+
+	if "]" in string_to_score:
+		return 0.0
+
+	if "[" in string_to_score:
+		return 0.0
+
+	if ":" in string_to_score:
+		return 0.0
+
+	if "_" in string_to_score:
+		return 0.0
+
+	if "\\" in string_to_score:
+		return 0.0
+
+	if "@" in string_to_score:
+		return 0.0
+
+	if "/" in string_to_score:
+		return 0.0
+
+	if "~" in string_to_score:
+		return 0.0
+
+	for char in string_to_score:
+		lower_char = char.lower()
+		if lower_char in character_frequencies.keys():
+			result = result + character_frequencies[lower_char]
+		else:
+			result = result - 0.05
+
+	return result/len(string_to_score)
 
 def main():
 
@@ -60,7 +148,7 @@ def main():
 
 	for char in string.ascii_letters:
 		xored_string = xor_string(ciphertext.decode("hex"), char)
-		score = scoring(xored_string)
+		score = simple_scoring(xored_string)
 		if score > max_score:
 			max_score = score
 			max_str = xored_string
