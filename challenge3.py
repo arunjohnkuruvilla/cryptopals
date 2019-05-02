@@ -25,50 +25,50 @@ def scoring(string_to_score):
 	result = 0.0
 	chars_tested = []
 
-	if " " not in string_to_score:
-		return 0.0
+	# if " " not in string_to_score:
+	# 	return 0.0
 
-	if "#" in string_to_score:
-		return 0.0
+	# if "#" in string_to_score:
+	# 	return 0.0
 
-	if "{" in string_to_score:
-		return 0.0
+	# if "{" in string_to_score:
+	# 	return 0.0
 
-	if "}" in string_to_score:
-		return 0.0
+	# if "}" in string_to_score:
+	# 	return 0.0
 
-	if "%" in string_to_score:
-		return 0.0
+	# if "%" in string_to_score:
+	# 	return 0.0
 
-	if ";" in string_to_score:
-		return 0.0
+	# if ";" in string_to_score:
+	# 	return 0.0
 
-	if "$" in string_to_score:
-		return 0.0
+	# if "$" in string_to_score:
+	# 	return 0.0
 
-	if "]" in string_to_score:
-		return 0.0
+	# if "]" in string_to_score:
+	# 	return 0.0
 
-	if "[" in string_to_score:
-		return 0.0
+	# if "[" in string_to_score:
+	# 	return 0.0
 
-	if ":" in string_to_score:
-		return 0.0
+	# if ":" in string_to_score:
+	# 	return 0.0
 
-	if "_" in string_to_score:
-		return 0.0
+	# if "_" in string_to_score:
+	# 	return 0.0
 
-	if "\\" in string_to_score:
-		return 0.0
+	# if "\\" in string_to_score:
+	# 	return 0.0
 
-	if "@" in string_to_score:
-		return 0.0
+	# if "@" in string_to_score:
+	# 	return 0.0
 
-	if "/" in string_to_score:
-		return 0.0
+	# if "/" in string_to_score:
+	# 	return 0.0
 
-	if "~" in string_to_score:
-		return 0.0
+	# if "~" in string_to_score:
+	# 	return 0.0
 
 	# printset = set(string.printable)
 	# if not set(string_to_score).issubset(printset):
@@ -86,50 +86,50 @@ def scoring(string_to_score):
 def simple_scoring(string_to_score):
 	result = 0.0
 
-	if " " not in string_to_score:
-		return 0.0
+	# if " " not in string_to_score:
+	# 	return 0.0
 
-	if "#" in string_to_score:
-		return 0.0
+	# if "#" in string_to_score:
+	# 	return 0.0
 
-	if "{" in string_to_score:
-		return 0.0
+	# if "{" in string_to_score:
+	# 	return 0.0
 
-	if "}" in string_to_score:
-		return 0.0
+	# if "}" in string_to_score:
+	# 	return 0.0
 
-	if "%" in string_to_score:
-		return 0.0
+	# if "%" in string_to_score:
+	# 	return 0.0
 
-	if ";" in string_to_score:
-		return 0.0
+	# if ";" in string_to_score:
+	# 	return 0.0
 
-	if "$" in string_to_score:
-		return 0.0
+	# if "$" in string_to_score:
+	# 	return 0.0
 
-	if "]" in string_to_score:
-		return 0.0
+	# if "]" in string_to_score:
+	# 	return 0.0
 
-	if "[" in string_to_score:
-		return 0.0
+	# if "[" in string_to_score:
+	# 	return 0.0
 
-	if ":" in string_to_score:
-		return 0.0
+	# if ":" in string_to_score:
+	# 	return 0.0
 
-	if "_" in string_to_score:
-		return 0.0
+	# if "_" in string_to_score:
+	# 	return 0.0
 
-	if "\\" in string_to_score:
-		return 0.0
+	# if "\\" in string_to_score:
+	# 	return 0.0
 
-	if "@" in string_to_score:
-		return 0.0
+	# if "@" in string_to_score:
+	# 	return 0.0
 
-	if "/" in string_to_score:
-		return 0.0
+	# if "/" in string_to_score:
+	# 	return 0.0
 
-	if "~" in string_to_score:
-		return 0.0
+	# if "~" in string_to_score:
+	# 	return 0.0
 
 	for char in string_to_score:
 		lower_char = char.lower()
