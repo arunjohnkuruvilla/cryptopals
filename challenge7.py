@@ -1,14 +1,21 @@
 from Crypto.Cipher import AES
 import base64
 
-key = "YELLOW SUBMARINE"
+def aes_ecb_decrypt(ciphertext, key):
+    obj = AES.new(key, AES.MODE_ECB)
 
-f = open("challenge7/encrypted.txt", "r")
+    plaintext = obj.decrypt(ciphertext)
 
-ciphertext = base64.b64decode(f.read())
+    return plaintext
 
-obj = AES.new(key, AES.MODE_ECB)
+def main():
+    KEY = "YELLOW SUBMARINE"
 
-plaintext = obj.decrypt(ciphertext)
+    f = open("challenge7/encrypted.txt", "r")
 
-print plaintext
+    ciphertext = base64.b64decode(f.read())
+
+    print aes_ecb_decrypt(ciphertext, KEY)
+
+if __name__ == '__main__':
+    main()
