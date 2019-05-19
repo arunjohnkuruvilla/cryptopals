@@ -1,7 +1,28 @@
 import struct
+import base64
 import challenge5
 import challenge7
-import base64
+import challenge9
+
+def aes_cbc_encrypt(plaintext, key, iv):
+    padded_plaintext = challenge9.pkcs7_pad(plaintext, len(key))
+
+    blocks = [padded_plaintext[i:i+16] for i in xrange(0, len(padded_plaintext), 16)]
+
+    current_iv = iv
+
+    ciphertext = ""
+
+    for block in blocks:
+        ciphertext_block = challenge5.repeated_xor(block, current_iv)
+
+        ciphertext_block = challenge7.aes_ecb_encrypt(ciphertext_block, key)
+
+        ciphertext = ciphertext + ciphertext_block
+
+        current_iv = ciphertext_block
+
+    return ciphertext
 
 def aes_cbc_decrypt(ciphertext, key, iv):
     blocks = [ciphertext[i:i+16] for i in xrange(0, len(ciphertext), 16)]
@@ -16,7 +37,7 @@ def aes_cbc_decrypt(ciphertext, key, iv):
 
         previous_block = block
 
-    return plaintext
+    return challenge9.pkcs7_unpad(plaintext)
 
 def main():
     KEY = b"YELLOW SUBMARINE"

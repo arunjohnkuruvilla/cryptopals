@@ -11,9 +11,12 @@ def pkcs7_pad(data, block_size):
 
 def pkcs7_unpad(data):
 
-    padding = data[-data[-1]:]
+    padding = data[-struct.unpack('B', data[-1])[0]:]
 
-    return all(padding[b] == len(padding) for b in xrange(0, len(padding)))
+    if all(padding[b] == len(padding) for b in xrange(0, len(padding))):
+        return data[:-len(padding)]
+    else:
+        return data
 
 def main():
     unpadded_data = bytearray("YELLOW SUBMARINE")
