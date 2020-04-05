@@ -12,6 +12,7 @@ My take on the Cryptopals challenges.
 6. Break repeating-key XOR
 7. AES in ECB mode
 8. Detect AES in ECB mode
+
 ### Set 2 - Block Crypto
 9. Implement PKCS#7 padding
 10. Implement CBC mode
