@@ -1,5 +1,6 @@
 import binascii
 import base64
+import challenge2
 import challenge3
 import challenge5
 import string
@@ -14,7 +15,7 @@ def hamming_distance(str1, str2):
 		for char1, char2 in zip(str1, str2):
 			result = result + bin(ord(char1) ^ ord(char2)).count("1")
 		return result
-	
+
 def transpose(text, size):
 	output = {}
 
@@ -28,8 +29,6 @@ def transpose(text, size):
 
 def main():
 	assert hamming_distance("this is a test", "wokka wokka!!!") == 37
-
-	min_key_size = 10000
 
 	f = open("challenge6/encrypted.txt", "r")
 
@@ -62,19 +61,24 @@ def main():
 	sorted_key_distances = sorted(key_distances.items(), key=lambda kv: kv[1])
 
 	for key_pair in sorted_key_distances[0:1]:
+		print key_pair
 		key_result = ""
 		for key, block in transpose(ciphertext, key_pair[0]).iteritems():
 			max_score = 0
 			max_key = ''
 			for char in string.printable:
-				score = challenge3.simple_scoring(challenge3.xor_string(block, char))
+				computed_plaintext = challenge5.repeated_xor(block, char)
+
+				score = challenge3.compute_chi_square(computed_plaintext)
+				# print str(len(block)) + ": " + computed_plaintext
 				if score > max_score:
 					max_score = score
 					max_key = char
+			# return
 			key_result = key_result + max_key
 
 		print challenge5.repeated_xor(ciphertext, key_result)
-		# print key_result
+		print key_result
 
 if __name__ == '__main__':
 	main()
