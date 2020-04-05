@@ -42,3 +42,4 @@ The result is encoded back to hex to be compared with the the final string:
 ```python
 print(xored_raw_string.encode("hex") == "746865206b696420646f6e277420706c6179")
 ```
+The entire code can be found at [source/challenge2.py](source/challenge2.py)
