@@ -1,47 +1,25 @@
 import string
 import challenge3
 import base64
-import re
-
-import binascii
-
-def xor_string(string_to_xor, key):
-	return ''.join(chr(ord(char) ^ ord(key)) for char in string_to_xor)
 
 def main():
-	max_max_score = 0.0
-	max_max_str = ""
-	max_max_key = ""
-
 	f = open("challenge4/encrypted.txt", "r")
 
-	for ciphertext in f.readlines():
-		max_score = 0.0
-		max_str = ""
-		max_key = ""
+	max_score = 0
+	max_str = ""
+	max_key = 0
+	line_found = 0
 
-		for char in string.printable:
-			xored_string = xor_string(binascii.unhexlify(ciphertext.strip()), char)
+	for counter, ciphertext in enumerate(f.readlines()):
+		result = challenge3.single_byte_xor_attack(ciphertext.strip())
 
-			for ch in xored_string:
-				if ch not in string.printable:
-					continue
+		if result["score"] > max_score:
+			max_score = result["score"]
+			max_str = result["plaintext"]
+			max_key = result["key"]
+			line_found = counter
 
-			score = challenge3.simple_scoring(xored_string)
-
-			if score > max_score:
-				max_score = score
-				max_str = xored_string
-				max_key = char
-
-		if max_score > max_max_score:
-			max_max_score = max_score
-			max_max_str = max_str
-			max_max_key = max_key
-
-	if max_max_score > 0.0:
-		print "Key: " + max_max_key + ": " + max_max_str
-		
+	print "Line #" + str(line_found) + ", Key: " + str(max_key) + ", Plaintext: " + max_str
 
 if __name__ == '__main__':
 	main()

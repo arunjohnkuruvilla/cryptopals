@@ -79,9 +79,6 @@ For every computed plaintext, a function will compute the chi-squared value:
 def compute_chi_square(computed_plaintext):
     chi_squared = 0
 
-    if not is_string_printable(computed_plaintext):
-        return 0
-
     plaintext_letter_count = compute_letter_count(computed_plaintext.lower())
 
     for char, frequency in plaintext_letter_count.iteritems():
@@ -100,6 +97,10 @@ def single_byte_xor_attack(ciphertext):
     max_key = 0
     for x in xrange(0, 256):
         computed_plaintext = ''.join(chr(ord(char)^x) for char in ciphertext.decode("hex"))
+
+        if not is_string_printable(computed_plaintext):
+            continue
+
         chi_squared_for_plaintext = compute_chi_square(computed_plaintext)
 
         if chi_squared_for_plaintext > max_chi:
@@ -107,9 +108,10 @@ def single_byte_xor_attack(ciphertext):
             max_string = computed_plaintext
             max_key = x
 
-    return {"plaintext": max_string, 'key': hex(max_key)}
+    return {"plaintext": max_string, 'key': hex(max_key), 'score': max_chi}
 
-print single_byte_xor_attack(ciphertext)
+result = single_byte_xor_attack(ciphertext)
+print result["plaintext"] + ": " + result["key"]
 ```
 
 The entire code can be found at [source/challenge3.py](source/challenge3.py)

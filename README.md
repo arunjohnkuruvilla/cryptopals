@@ -7,8 +7,8 @@ My take on the Cryptopals challenges.
 1. [Convert hex to base64](docs/Challenge1.md)
 2. [Fixed XOR](docs/Challenge2.md)
 3. [Single-byte XOR cipher](docs/Challenge3.md)
-4. Detect single-character XOR
-5. Implement repeating-key XOR
+4. [Detect single-character XOR](docs/Challenge4.md)
+5. [Implement repeating-key XOR](docs/Challenge5.md)
 6. Break repeating-key XOR
 7. AES in ECB mode
 8. Detect AES in ECB mode
