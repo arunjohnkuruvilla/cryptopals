@@ -15,11 +15,10 @@
 >
 > You now have our permission to make "ETAOIN SHRDLU" jokes on Twitter.
 
-This challenge is a modified version of the famous "Caesar's Cipher". Instead of rotating the alphabets in a string by a fixed amount as in the case of Caesar's cipher, here a single byte is XOR'ed with the entire plaintext.
+This challenge is a modified version of the famous "[Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher)". Instead of rotating the alphabets in a string by a fixed amount as in the case of Caesar cipher, here a single byte is XOR'ed with the entire plaintext.
 
 The simplest attack against this encryption scheme would be to try all possible keys and identify strings that make sense in the English language. This is because the number of keys is very small. The key is a byte, which is 8 bits in length. Therefore, the total number of keys would be 256 (=2<sup>8</sup>).
 
-The
 ```python
 ciphertext = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 raw_plaintext = ciphertext.decode("hex")
@@ -29,7 +28,7 @@ for x in xrange(0, 256):
 
 This will generate 256 strings, and they have to manually inspected to identify the correct plaintext. Since the number of keys is limited, this is possible.
 
-There are several ways the number of strings to inspect can be reduced, if there is information available about the plaintext. For example, if it is known that the plaintext is an english sentence, all computed plaintexts without a space can be ignored. Similarly, all computed plaintexts with characters not in the English alphabet can be ignored. The list goes on. After reducing plaintexts in this fashion, the next stratergy would be to employ frequency analysis.
+There are several ways the number of strings to inspect can be reduced, if there is information available about the plaintext. For example, if it is known that the plaintext is an english sentence, all computed plaintexts without a space can be ignored. Similarly, all computed plaintexts with characters not in the English alphabet can be ignored. The list goes on. After reducing plaintexts in this fashion, the next strategy would be to employ frequency analysis.
 
 Several types of frequency analyses exist, and for this challenge the relative letter frequency analysis can be used. In English sentences, some letters are occur much more frequently than others.
 
