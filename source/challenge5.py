@@ -1,4 +1,4 @@
-import challenge3
+import challenge2
 
 plaintext = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
 
@@ -10,7 +10,7 @@ ciphertext = "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324
 def repeated_xor(text, key):
 	output = ""
 	for count, char in enumerate(text):
-		output = output + challenge3.xor_string(char, key[count%len(key)])
+		output = output + challenge2.xor_strings(char, key[count%len(key)])
 
 	return output
 
