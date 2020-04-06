@@ -95,7 +95,7 @@ def transpose(text, size):
 
 	return output
 ```
-Next, the ciphertext is read from the file and base64 decoded. After identifying the key size, the ciphertext is transposed by breaking up the string as per the key size. Then, all keys are looped over and XOR'ed with each block. For each key, the best chi_squared value is considered as a potential key byte. All individually identified key bytes are combined to recreate the key. The ciphertext is then repeating-key XOR'ed with the key to get the plaintext. 
+Next, the ciphertext is read from the file and base64 decoded. After identifying the key size, the ciphertext is transposed by breaking up the string as per the key size. Then, all keys are looped over and XOR'ed with each block. For each key, the best chi_squared value is considered as a potential key byte. All individually identified key bytes are combined to recreate the key. The ciphertext is then repeating-key XOR'ed with the key to get the plaintext.
 
 ```python
 assert hamming_distance("this is a test", "wokka wokka!!!") == 37
@@ -128,3 +128,5 @@ for key_pair in sorted_key_distances[0:1]:
     print challenge5.repeated_xor(ciphertext, key_result)
     print "KEY: " + key_result
 ```
+
+The source code can be found at [source/challenge6.py](source/challenge6.py).

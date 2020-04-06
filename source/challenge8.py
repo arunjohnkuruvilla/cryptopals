@@ -1,5 +1,7 @@
-def detect_ecb(ciphertext):
-    blocks = [ciphertext[i:i+16] for i in range(0, len(ciphertext), 16)]
+def detect_ecb(ciphertext, blocksize=16):
+    if (len(ciphertext)%blocksize) != 0:
+        return False
+    blocks = [ciphertext[i:i+blocksize] for i in range(0, len(ciphertext), blocksize)]
     if len(blocks) != len(set(blocks)):
         return True
     return False
@@ -10,9 +12,10 @@ def main():
     result = 0
 
     for count, ciphertext in enumerate(f.readlines()):
-        if detect_ecb(ciphertext):
+        if detect_ecb(ciphertext.strip().decode("hex")):
             result = count
 
+    print result
     assert(result == 132)
 
 if __name__ == '__main__':
