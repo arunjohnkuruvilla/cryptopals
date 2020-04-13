@@ -1,9 +1,9 @@
 import struct
 
 def pkcs7_pad(data, block_size):
-    if len(data)%block_size == 0:
-        return data
     remaining_bytes = block_size - len(data)%block_size
+    if remaining_bytes == 0:
+        remaining_bytes = block_size
 
     for x in xrange(0, remaining_bytes):
         data = data + struct.pack('B', remaining_bytes)
@@ -19,9 +19,15 @@ def pkcs7_unpad(data):
         return data
 
 def main():
-    unpadded_data = r"YELLOW SUBMARINE"
+    unpadded_data = b'YELLOW SUBMARINE'
+
+    padded_data_test = b'YELLOW SUBMARINE\x04\x04\x04\x04'
 
     padded_data = pkcs7_pad(unpadded_data, 20)
+
+    print len(padded_data)
+
+    print padded_data == padded_data_test
 
     print pkcs7_unpad(padded_data)
 

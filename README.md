@@ -14,11 +14,11 @@ My take on the Cryptopals challenges.
 8. [Detect AES in ECB mode](docs/Challenge8.md)
 
 ### Set 2 - Block Crypto
-9. Implement PKCS#7 padding
-10. Implement CBC mode
-11. An ECB/CBC detection oracle
-12. Byte-at-a-time ECB decryption (Simple)
-13. ECB cut-and-paste
-14. Byte-at-a-time ECB decryption (Harder)
-15. PKCS#7 padding validation
-16. CBC bitflipping attacks
+9. [Implement PKCS#7 padding](docs/Challenge9.md)
+10. [Implement CBC mode](docs/Challenge10.md)
+11. [An ECB/CBC detection oracle](docs/Challenge11.md)
+12. [Byte-at-a-time ECB decryption (Simple)](docs/Challenge12.md)
+13. [ECB cut-and-paste](docs/Challenge13.md)
+14. [Byte-at-a-time ECB decryption (Harder)](docs/Challenge14.md)
+15. [PKCS#7 padding validation](docs/Challenge15.md)
+16. [CBC bitflipping attacks](docs/Challenge16.md)
