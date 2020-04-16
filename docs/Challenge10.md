@@ -15,7 +15,7 @@
 
 A block cipher mode of operation is an algorithm that uses a block cipher like AES to encrypt data longer than a block size.
 
-There are several cipher modes, and Cipher Block Chaining is one of them. In this mode, each block of plaintext is XOR'ed with the previous ciphertext block before being encrypted. This ensures that all blocks depend upon all the blocks processed until then. Refer to the Wikipedia article on [CBC mode](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC) to learn more. The first block is XOR'ed with an Initialization Vector (IV) to keep all blocks unique. Initialization vectors are a whole different area of cryptography themselves, and present some interesting problems. Refer to the Wikipedia article on [Initialization Vectors](https://en.wikipedia.org/wiki/Initialization_vector) to learn more.
+There are several cipher modes, and Cipher Block Chaining is one of them. In this mode, each block of plaintext is XOR'ed with the previous ciphertext block before being encrypted. This ensures that all blocks depend upon all the blocks processed until then. Refer to the Wikipedia article on [CBC mode](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC)) to learn more. The first block is XOR'ed with an Initialization Vector (IV) to keep all blocks unique. Initialization vectors are a whole different area of cryptography themselves, and present some interesting problems. Refer to the Wikipedia article on [Initialization Vectors](https://en.wikipedia.org/wiki/Initialization_vector) to learn more.
 
 For the current challenge, the key is "YELLOW SUBMARINE", which makes the block size 16 bytes. The IV for the challenge would be a 16 byte block of ASCII 0.
 
