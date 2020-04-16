@@ -7,7 +7,7 @@
 >
 > Implement CBC mode by hand by taking the ECB function you wrote earlier, making it encrypt instead of decrypt (verify this by decrypting whatever you encrypt to test), and using your XOR function from the previous exercise to combine them.
 >
-> [The file here](source/challenge10/encrypted.txt) is intelligible (somewhat) when CBC decrypted against "YELLOW SUBMARINE" with an IV of all ASCII 0 (\x00\x00\x00 &c)
+> [The file here](../source/challenge10/encrypted.txt) is intelligible (somewhat) when CBC decrypted against "YELLOW SUBMARINE" with an IV of all ASCII 0 (\x00\x00\x00 &c)
 >
 > Don't cheat.
 >
@@ -41,7 +41,7 @@ def aes_cbc_decrypt(ciphertext, key, iv):
 
     return challenge9.pkcs7_unpad(plaintext)
 ```
-The encryption function is defined similarly using the ```pck7_pad()``` function from [Challenge 9](Challenge9.md), the ```aes_ecb_encrypt()``` function from [Challenge 7](Challenge7.md) and the ```repeated_xor()``` function from [Challenge 5](Challenge5.md). 
+The encryption function is defined similarly using the ```pck7_pad()``` function from [Challenge 9](Challenge9.md), the ```aes_ecb_encrypt()``` function from [Challenge 7](Challenge7.md) and the ```repeated_xor()``` function from [Challenge 5](Challenge5.md).
 ```python
 def aes_cbc_encrypt(plaintext, key, iv):
     padded_plaintext = challenge9.pkcs7_pad(plaintext, len(key))

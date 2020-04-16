@@ -1,5 +1,5 @@
 # Detect AES in ECB mode
-> In this file are a bunch of hex-encoded ciphertexts.
+> [In this file](../source/challenge8/encrypted.txt) are a bunch of hex-encoded ciphertexts.
 >
 > One of them has been encrypted with ECB.
 >

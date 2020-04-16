@@ -4,7 +4,7 @@
 >
 > This challenge isn't conceptually hard, but it involves actual error-prone coding. The other challenges in this set are there to bring you up to speed. This one is there to qualify you. If you can do this one, you're probably just fine up to Set 6.
 >
-> [There's a file here](source/challenge6/encrypted.txt). It's been base64'd after being encrypted with repeating-key XOR.
+> [There's a file here](../source/challenge6/encrypted.txt). It's been base64'd after being encrypted with repeating-key XOR.
 >
 > Decrypt it.
 >

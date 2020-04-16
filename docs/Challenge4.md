@@ -1,5 +1,5 @@
 # Detect single-character XOR
-> One of the 60-character strings in this [file](source/challenge4/encrypted.txt) has been encrypted by single-character XOR.
+> One of the 60-character strings in this [file](../source/challenge4/encrypted.txt) has been encrypted by single-character XOR.
 >
 > Find it.
 >
