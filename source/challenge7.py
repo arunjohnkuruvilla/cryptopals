@@ -22,7 +22,6 @@ def main():
     f = open("challenge7/encrypted.txt", "r")
 
     ciphertext = base64.b64decode(f.read())
-    print ciphertext
 
     print aes_ecb_decrypt(ciphertext, KEY)
 

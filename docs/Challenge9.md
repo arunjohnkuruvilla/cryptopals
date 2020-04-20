@@ -17,13 +17,14 @@
 
 **PKCS** in cryptography stands for "Public Key Cryptographic Standards", which are a group of standards developed for public-key cryptography. Refer to the cryptography.io page for [PKCS#7](https://cryptography.io/en/latest/hazmat/primitives/padding/) to learn more.
 
-The padding function checks for the number of bytes to be appended to the string. If the length on the message is a multiple of the block size, an entire block of padding with each byte being the block size is appended to the message. 
+The padding function checks for the number of bytes to be appended to the string. The number of bytes of padding is added to the end of the plaintext to make the length of the plaintext a multiple of the blocksize.
 
 ```python
 def pkcs7_pad(data, block_size):
     remaining_bytes = block_size - len(data)%block_size
-    if remaining_bytes == 0:
-        remaining_bytes = block_size
+
+    if remaining_bytes == block_size:
+        return data
 
     for x in xrange(0, remaining_bytes):
         data = data + struct.pack('B', remaining_bytes)
@@ -33,8 +34,9 @@ def pkcs7_pad(data, block_size):
 An unpadding function is also defined as follows:
 ```python
 def pkcs7_unpad(data):
+    padding_length = struct.unpack('B', str(data[-1]))[0]
 
-    padding = data[-struct.unpack('B', str(data[-1]))[0]:]
+    padding = data[-padding_length:]
 
     if all(ord(padding[b]) == len(padding) for b in xrange(0, len(padding))):
         return data[:-len(padding)]
