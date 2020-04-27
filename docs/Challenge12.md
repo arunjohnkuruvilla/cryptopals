@@ -18,7 +18,7 @@
 >
 > ```
 > AES-128-ECB(your-string || unknown-string, random-key)
-```
+> ```
 > It turns out: you can decrypt "unknown-string" with repeated calls to the oracle function!
 >
 > Here's roughly how:
