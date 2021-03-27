@@ -8,12 +8,10 @@ import challenge12
 
 GLOBAL_KEY = challenge11.key_generate(AES.block_size)
 
-def encryption_oracle(email):
+def encryption_oracle(plaintext):
     global GLOBAL_KEY
 
-    modified_plaintext = encode(profile_for(email))
-
-    return challenge7.aes_ecb_encrypt(modified_plaintext, GLOBAL_KEY)
+    return challenge7.aes_ecb_encrypt(plaintext, GLOBAL_KEY)
 
 def decryption_oracle(ciphertext):
     global GLOBAL_KEY
@@ -32,14 +30,14 @@ def decode(input):
         output[element.split("=")[0]] = element.split("=")[1]
     return output
 
-def profile_for(input):
-    cleaned_input = input.replace("&", "").replace("=", "")
+def profile_for(input_email):
+    cleaned_input = input_email.replace("&", "").replace("=", "")
 
     output = OrderedDict()
     output['email'] = cleaned_input
     output['uid'] = 10
     output['role'] = 'user'
-    return output
+    return encryption_oracle(encode(output))
 
 def create_ecb_ciphertext():
     # block1           block2                                            block3
@@ -49,24 +47,36 @@ def create_ecb_ciphertext():
     suffix_length = AES.block_size - len("admin")
 
     crafted_plaintext_1 = "x" * prefix_length + "admin" + (chr(suffix_length) * suffix_length)
-    crafted_ciphertext_1 = encryption_oracle(crafted_plaintext_1)
+    crafted_ciphertext_1 = profile_for(crafted_plaintext_1)
+
+
+    # block1           block2                                           block3
+    # email=xxxxxxxxxx madmin\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c   &uid=10&role=user
 
     # block1           block2           block3
-    # email=asdfg.tex. com&uid=10&role= user\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c\x0c
+    # email=foo@bar.co m&uid=10&role=us er\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e
 
-    crafted_plaintext_2 = "asdfg.tex.com"
-    crafted_ciphertext_2 = encryption_oracle(crafted_plaintext_2)
+    crafted_plaintext_2 = "asdfg.tex@com"
+    crafted_ciphertext_2 = profile_for(crafted_plaintext_2)
 
     return crafted_ciphertext_2[:32] + crafted_ciphertext_1[16:32]
 
 def main():
-    # decode("foo=bar&baz=qux&zap=zazzle")
+    # print (decode("foo=bar&baz=qux&zap=zazzle"))
     #
-    # encryption_oracle("foo@bar.com")
+
+    ciphertext_1 = profile_for('foo@bar.com')
+    plaintext_1 = decode(decryption_oracle(ciphertext_1))
+    print "Key-value pair for 'foo@bar.com' - " + str(plaintext_1)
+
+    ciphertext_2 = profile_for("foo@bar.com&role=admin")
+    plaintext_2 = decode(decryption_oracle(ciphertext_2))
+    print "Key-value pair for 'foo@bar.com&role=admin' - " + str(plaintext_2)
+
 
     plaintext = decryption_oracle(create_ecb_ciphertext())
-
     assert(decode(plaintext)['role'] == "admin")
+    print "Setting role=admin - " + str(decode(plaintext))
 
 if __name__ == '__main__':
     main()
